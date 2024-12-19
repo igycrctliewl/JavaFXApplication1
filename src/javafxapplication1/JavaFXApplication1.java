@@ -1,6 +1,5 @@
 package javafxapplication1;
 
-import java.awt.event.ActionListener;
 import java.util.Date;
 
 import javax.swing.Timer;
@@ -11,13 +10,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 /**
@@ -65,12 +60,7 @@ public class JavaFXApplication1 extends Application {
 		root.getChildren().add( cc );
 		root.getChildren().add( cc2 );
 
-		Timer timer = new Timer(5000, new ActionListener() {
-			@Override
-			public void actionPerformed(java.awt.event.ActionEvent ae) {
-				cc2.setText( (new Date()).toString() );
-			}
-		});
+		Timer timer = new Timer(5000, ae -> cc2.setText( (new Date()).toString() ) );
 		timer.start();
 
 		Scene scene = new Scene( root, 300, 500 );
@@ -136,13 +126,7 @@ public class JavaFXApplication1 extends Application {
 			button.setPrefWidth( 115.0 );
 			System.out.printf( "button height: %s  width: %s%n", button.getHeight(), button.getWidth() );
 			//this.button.setPadding( padding );
-			button.setOnAction( new EventHandler<ActionEvent>() {
-				@Override
-				public void handle( ActionEvent event ) {
-					System.out.println( "cc message: ".concat( textField.getText() ) );
-				}
-			});
-
+			button.setOnAction( event -> System.out.println( "cc message: ".concat( textField.getText() ) ) );
 		}
 	}
 }
