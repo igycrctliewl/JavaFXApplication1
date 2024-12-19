@@ -1,5 +1,10 @@
 package javafxapplication1;
 
+import java.awt.event.ActionListener;
+import java.util.Date;
+
+import javax.swing.Timer;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -60,6 +65,13 @@ public class JavaFXApplication1 extends Application {
 		root.getChildren().add( cc );
 		root.getChildren().add( cc2 );
 
+		Timer timer = new Timer(5000, new ActionListener() {
+			@Override
+			public void actionPerformed(java.awt.event.ActionEvent ae) {
+				cc2.setText( (new Date()).toString() );
+			}
+		});
+		timer.start();
 
 		Scene scene = new Scene( root, 300, 500 );
 
@@ -93,26 +105,44 @@ public class JavaFXApplication1 extends Application {
 			super(5);
 			createText( customString );
 			createButton( customString );
-			this.getChildren().addAll( this.textField, this.button );
+			this.getChildren().addAll( textField, button );
 		}
 
 		public CustomControl() {
 			super(5);
 			createText( "custom" );
 			createButton( "custom" );
-			this.getChildren().addAll( this.textField, this.button );
+			this.getChildren().addAll( textField, button );
 		}
 
+		public void setText( String newText ) {
+			textField.setText( newText );
+		}
+
+
 		private void createText( String textString ) {
-			this.textField = new TextField();
-			this.textField.setText( textString.concat( " text" ) );
+			textField = new TextField();
+			textField.setText( textString.concat( " text" ) );
+			textField.setPrefHeight( 25.0 );
+			textField.setPrefWidth( 150.0 );
+			System.out.printf( "textfield height: %s  width: %s%n", textField.getHeight(), textField.getWidth() );
 			//this.textField.setPadding( padding );
 		}
 
 		private void createButton( String textString ) {
-			this.button = new Button();
-			this.button.setText( textString.concat( " button" ) );
+			button = new Button();
+			button.setText( textString.concat( " button" ) );
+			button.setPrefHeight( 25.0 );
+			button.setPrefWidth( 115.0 );
+			System.out.printf( "button height: %s  width: %s%n", button.getHeight(), button.getWidth() );
 			//this.button.setPadding( padding );
+			button.setOnAction( new EventHandler<ActionEvent>() {
+				@Override
+				public void handle( ActionEvent event ) {
+					System.out.println( "cc message: ".concat( textField.getText() ) );
+				}
+			});
+
 		}
 	}
 }
