@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -113,6 +114,7 @@ public class JavaFXApplication1 extends Application {
 		private void createText( String textString ) {
 			textField = new TextField();
 			textField.setText( textString.concat( " text" ) );
+			textField.setFont( new Font( "Verdana", 14.0 ) );
 			textField.setPrefHeight( 25.0 );
 			textField.setPrefWidth( 150.0 );
 			System.out.printf( "textfield height: %s  width: %s%n", textField.getHeight(), textField.getWidth() );
