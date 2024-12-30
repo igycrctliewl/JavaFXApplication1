@@ -1,4 +1,4 @@
-package javafxapplication1;
+package com.mikebro.myapp.javafx;
 
 import java.util.Date;
 
@@ -78,10 +78,10 @@ public class JavaFXApplication1 extends Application {
 	 * NetBeans ignores main().
 	 *
 	 * @param args the command line arguments
-	 */
 	public static void main( String[] args ) {
 		launch( args );
 	}
+	 */
 
 
 
