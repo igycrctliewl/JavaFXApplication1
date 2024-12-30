@@ -1,4 +1,4 @@
-package com.mikebro.myapp.service;
+package com.mikebro.myappp.service;
 
 /**
  *

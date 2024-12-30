@@ -1,6 +1,6 @@
-package com.mikebro.myapp.service;
+package com.mikebro.myappp.service.impl;
 
-import com.mikebro.myapp.service.AppService;
+import com.mikebro.myappp.service.AppService;
 import org.springframework.stereotype.Service;
 
 

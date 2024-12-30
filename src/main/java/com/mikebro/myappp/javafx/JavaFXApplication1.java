@@ -1,8 +1,15 @@
-package com.mikebro.myapp.javafx;
+package com.mikebro.myappp.javafx;
 
 import java.util.Date;
 
 import javax.swing.Timer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mikebro.myappp.main.MainApp;
+import com.mikebro.nhl.json.Schedule;
+import com.mikebro.nhl.service.NHLService;
+import com.mikebro.nhl.service.impl.NHLServiceImpl;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -22,8 +29,13 @@ import javafx.stage.Stage;
  */
 public class JavaFXApplication1 extends Application {
 
+	private NHLService nhlService;
+
+
 	@Override
 	public void start( Stage primaryStage ) {
+		nhlService = MainApp.nhlService;
+
 		Button btn = new Button();
 		btn.setText( "Say 'Hello World'" );
 		btn.setLayoutX( 10 );
@@ -61,8 +73,8 @@ public class JavaFXApplication1 extends Application {
 		root.getChildren().add( cc );
 		root.getChildren().add( cc2 );
 
-		Timer timer = new Timer(5000, ae -> cc2.setText( (new Date()).toString() ) );
-		timer.start();
+		Schedule schedule = nhlService.getTodaySchedule();
+		cc2.setText( String.format( "found %s games", schedule.getGames().size() ) );
 
 		Scene scene = new Scene( root, 300, 500 );
 
