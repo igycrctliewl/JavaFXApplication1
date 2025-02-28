@@ -33,6 +33,7 @@ public class MainApp {
 
 		Application.launch(JavaFXApplication1.class, args);
 
-//		context.close();
+		context.close();
+		System.out.println( "<<<< MainApp.main exit" );
 	}
 }

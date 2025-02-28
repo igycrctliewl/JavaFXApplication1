@@ -17,9 +17,11 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -30,11 +32,28 @@ import javafx.stage.Stage;
 public class JavaFXApplication1 extends Application {
 
 	private NHLService nhlService;
-
+	private CustomControl cc;
+	private Stage mainStage;
 
 	@Override
 	public void start( Stage primaryStage ) {
+		mainStage = primaryStage;
 		nhlService = MainApp.nhlService;
+
+		Label lblPrevious = new Label();
+		lblPrevious.setText( "<-- Prev" );
+		lblPrevious.setFont( new Font( "Verdana", 14.0 ) );
+		lblPrevious.setLayoutX( 10 );
+		lblPrevious.setLayoutY( 20 );
+		lblPrevious.setOnMouseClicked( ev -> actionPreviousClicked() );
+
+		Label lblNext = new Label();
+		lblNext.setText( "Next -->" );
+		lblNext.setFont( new Font( "Verdana", 14.0 ) );
+		lblNext.setLayoutX( 150 );
+		lblNext.setLayoutY( 20 );
+		lblNext.setOnMouseClicked( ev -> actionNextClicked() );
+
 
 		Button btn = new Button();
 		btn.setText( "Say 'Hello World'" );
@@ -51,14 +70,9 @@ public class JavaFXApplication1 extends Application {
 		btn2.setText( "Oh, just have text" );
 		btn2.setLayoutX( 150 );
 		btn2.setLayoutY( 100 );
-		btn2.setOnAction( new EventHandler<ActionEvent>() {
-			@Override
-			public void handle( ActionEvent event ) {
-				System.out.println( "Button2 has spoken" );
-			}
-		} );
+		btn2.setOnAction( ev -> recreateStage() );
 
-		CustomControl cc = new CustomControl();
+		cc = new CustomControl();
 		cc.setLayoutX(20);
 		cc.setLayoutY(300);
 
@@ -68,6 +82,8 @@ public class JavaFXApplication1 extends Application {
 
 		Pane root = new Pane();
 		//StackPane root = new StackPane();
+		root.getChildren().add( lblPrevious );
+		root.getChildren().add( lblNext );
 		root.getChildren().add( btn );
 		root.getChildren().add( btn2 );
 		root.getChildren().add( cc );
@@ -78,7 +94,7 @@ public class JavaFXApplication1 extends Application {
 
 		Scene scene = new Scene( root, 300, 500 );
 
-		primaryStage.setTitle( "Hello World!" );
+		primaryStage.setTitle( "JavaFX Labs 1.0" );
 		primaryStage.setScene( scene );
 		primaryStage.show();
 	}
@@ -96,6 +112,27 @@ public class JavaFXApplication1 extends Application {
 	 */
 
 
+	private void recreateStage() {
+		Button btn = new Button();
+		btn.setText( "Presto!" );
+		btn.setLayoutX( 10 );
+		btn.setLayoutY( 100 );
+		btn.setOnAction( ev -> System.out.println( "New stage magic" ) );
+
+		StackPane root = new StackPane();
+		root.getChildren().add( btn );
+		Scene scene = new Scene( root, 300, 500 );
+		mainStage.setScene( scene );
+	}
+
+	private void actionPreviousClicked() {
+		cc.setText( "prev" );
+	}
+	
+	private void actionNextClicked() {
+		cc.setText( "next" );
+	}
+	
 
 
 	public class CustomControl extends HBox {
