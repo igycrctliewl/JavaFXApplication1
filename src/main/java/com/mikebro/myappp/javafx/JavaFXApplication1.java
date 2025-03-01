@@ -121,7 +121,7 @@ public class JavaFXApplication1 extends Application {
 
 		StackPane root = new StackPane();
 		root.getChildren().add( btn );
-		Scene scene = new Scene( root, 300, 500 );
+		Scene scene = new Scene( root, 150, 250 );
 		mainStage.setScene( scene );
 	}
 
